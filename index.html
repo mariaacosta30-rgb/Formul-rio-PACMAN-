@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENAI - Inscrição Pac-Man</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ESTILIZAÇÃO (CSS) --- */
+        
+        body {
+            background-image: url('image_8d31d5.png'); 
+            background-repeat: repeat-x;  
+            background-size: contain;     
+            
+            /* * --- VELOCIDADE ALTERADA ---
+             * Mudei de 15s para 25s (mais lento)
+            */
+            animation: moveMaze 25s linear infinite; 
+
+            background-color: #000000; 
+            color: #FFFFFF; 
+            font-family: 'Press Start 2P', cursive; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            
+            position: relative;
+        }
+
+        /* Camada escura sobre o fundo para legibilidade */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); 
+            z-index: -1; 
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #111;
+            
+            /* * --- COR ALTERADA ---
+             * Mudei a borda de azul para vermelho
+            */
+            border: 4px solid #FF0000; /* Vermelho Fantasma */
+            padding: 2.5rem;
+            box-shadow: 0 0 20px #FF0000; /* Sombra Vermelha */
+            border-radius: 8px;
+            
+            z-index: 1; 
+        }
+
+        /* --- Estilos do Formulário --- */
+
+        #form-inscricao h1 {
+            color: #FFFF00; /* Amarelo Pac-Man (Mantido) */
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #form-inscricao h1::before {
+            content: '🟡';
+            margin-right: 15px;
+            font-size: 2rem;
+            display: inline-block;
+            animation: chomp 0.5s infinite alternate;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            color: #CCCCCC;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background-color: #222;
+            
+            /* * --- COR ALTERADA ---
+             * Mudei a borda do input de azul para vermelho
+            */
+            border: 2px solid #FF0000; /* Borda Vermelha */
+            
+            color: #FFFFFF;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            box-sizing: border-box; 
+            border-radius: 4px;
+        }
+
+        /* Foco continua amarelo, pois combina com o Pac-Man */
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #FFFF00; 
+            box-shadow: 0 0 10px #FFFF00;
+        }
+
+        /* --- Estilos dos Botões --- */
+        
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: #FFFF00; /* Amarelo Pac-Man (Mantido) */
+            color: #000000; 
+            border: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .btn:hover {
+            background-color: #FFF; 
+        }
+        
+        .btn:active {
+             transform: scale(0.98); 
+        }
+
+        /* --- Tela de Confirmação --- */
+
+        #form-confirmacao {
+            display: none; 
+            text-align: center;
+        }
+
+        #form-confirmacao h2 {
+            color: #FFFF00; /* Amarelo (Mantido) */
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        #form-confirmacao p {
+            font-size: 1.5rem;
+            
+             /* * --- COR ALTERADA ---
+             * Mudei o emoji/fantasma de azul para vermelho
+            */
+            color: #FF0000; /* Vermelho */
+            
+            margin: 2rem 0;
+            animation: float 1s infinite alternate;
+        }
+
+        /* --- Animações --- */
+        
+        @keyframes chomp {
+            from { transform: rotate(-20deg); }
+            to { transform: rotate(20deg); }
+        }
+
+        @keyframes float {
+            from { transform: translateY(-5px); }
+            to { transform: translateY(5px); }
+        }
+
+        /* Animação de 'scroll' do labirinto */
+        @keyframes moveMaze {
+            from { background-position: 0 0; }
+            to { background-position: -500px 0; } 
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div id="form-inscricao">
+            <h1>Inscrição SENAI</h1>
+            
+            <form id="registration-form">
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX">
+                </div>
+                <div class="form-group">
+                    <label for="curso">Curso Desejado:</label>
+                    <select id="curso" name="curso" required>
+                        <option value="">Selecione o curso...</option>
+                        <option value="automacao">Automação Industrial</option>
+                        <option value="logistica">Logística</option>
+                        <option value="dev">Desenvolvimento de Sistemas</option>
+                        <option value="redes">Redes de Computadores</option>
+                        <option value="mecatronica">Mecatrônica</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Enviar Inscrição</button>
+            </form>
+        </div>
+
+        <div id="form-confirmacao">
+            <p>👻</p> 
+            
+            <h2>Obrigado pela sua inscrição!</h2>
+            <br>
+            <p style="font-size: 0.9rem; color: #FFF; animation: none;">
+                Sua pré-matrícula foi registrada.<br>
+                Fique atento ao seu email.
+            </p>
+            <br><br>
+
+            <button id="btn-voltar" class="btn">Voltar para página principal</button>
+        </div>
+
+    </div>
+
+    <script>
+        /* --- LÓGICA (JavaScript) --- */
+
+        const formContainer = document.getElementById('form-inscricao');
+        const confirmationContainer = document.getElementById('form-confirmacao');
+        const form = document.getElementById('registration-form');
+        const backButton = document.getElementById('btn-voltar');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            formContainer.style.display = 'none';
+            confirmationContainer.style.display = 'block';
+        });
+
+        backButton.addEventListener('click', function() {
+            confirmationContainer.style.display = 'none';
+            formContainer.style.display = 'block';
+            form.reset();
+        });
+    </script>
+
+</body>
+</html>
