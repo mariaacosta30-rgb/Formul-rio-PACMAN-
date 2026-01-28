@@ -10,16 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
-        /* --- ESTILIZAÇÃO (CSS) --- */
         
         body {
             background-image: url('image_8d31d5.png'); 
             background-repeat: repeat-x;  
             background-size: contain;     
             
-            /* * --- VELOCIDADE ALTERADA ---
-             * Mudei de 15s para 25s (mais lento)
-            */
             animation: moveMaze 25s linear infinite; 
 
             background-color: #000000; 
@@ -36,7 +32,6 @@
             position: relative;
         }
 
-        /* Camada escura sobre o fundo para legibilidade */
         body::before {
             content: "";
             position: fixed;
@@ -53,21 +48,18 @@
             max-width: 600px;
             background-color: #111;
             
-            /* * --- COR ALTERADA ---
-             * Mudei a borda de azul para vermelho
-            */
-            border: 4px solid #FF0000; /* Vermelho Fantasma */
+    
+            border: 4px solid #FF0000; 
             padding: 2.5rem;
-            box-shadow: 0 0 20px #FF0000; /* Sombra Vermelha */
+            box-shadow: 0 0 20px #FF0000; 
             border-radius: 8px;
             
             z-index: 1; 
         }
 
-        /* --- Estilos do Formulário --- */
 
         #form-inscricao h1 {
-            color: #FFFF00; /* Amarelo Pac-Man (Mantido) */
+            color: #FFFF00; 
             text-align: center;
             font-size: 1.5rem;
             margin-bottom: 2rem;
@@ -101,10 +93,8 @@
             padding: 12px;
             background-color: #222;
             
-            /* * --- COR ALTERADA ---
-             * Mudei a borda do input de azul para vermelho
-            */
-            border: 2px solid #FF0000; /* Borda Vermelha */
+          
+            border: 2px solid #FF0000; 
             
             color: #FFFFFF;
             font-family: 'Press Start 2P', cursive;
@@ -113,20 +103,17 @@
             border-radius: 4px;
         }
 
-        /* Foco continua amarelo, pois combina com o Pac-Man */
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
             border-color: #FFFF00; 
             box-shadow: 0 0 10px #FFFF00;
         }
-
-        /* --- Estilos dos Botões --- */
         
         .btn {
             width: 100%;
             padding: 1rem;
-            background-color: #FFFF00; /* Amarelo Pac-Man (Mantido) */
+            background-color: #FFFF00; 
             color: #000000; 
             border: none;
             font-family: 'Press Start 2P', cursive;
@@ -145,32 +132,24 @@
              transform: scale(0.98); 
         }
 
-        /* --- Tela de Confirmação --- */
-
         #form-confirmacao {
             display: none; 
             text-align: center;
         }
 
         #form-confirmacao h2 {
-            color: #FFFF00; /* Amarelo (Mantido) */
+            color: #FFFF00; 
             font-size: 1.2rem;
             line-height: 1.8;
         }
 
         #form-confirmacao p {
             font-size: 1.5rem;
-            
-             /* * --- COR ALTERADA ---
-             * Mudei o emoji/fantasma de azul para vermelho
-            */
-            color: #FF0000; /* Vermelho */
+            color: #FF0000;
             
             margin: 2rem 0;
             animation: float 1s infinite alternate;
         }
-
-        /* --- Animações --- */
         
         @keyframes chomp {
             from { transform: rotate(-20deg); }
@@ -182,7 +161,6 @@
             to { transform: translateY(5px); }
         }
 
-        /* Animação de 'scroll' do labirinto */
         @keyframes moveMaze {
             from { background-position: 0 0; }
             to { background-position: -500px 0; } 
@@ -242,7 +220,6 @@
     </div>
 
     <script>
-        /* --- LÓGICA (JavaScript) --- */
 
         const formContainer = document.getElementById('form-inscricao');
         const confirmationContainer = document.getElementById('form-confirmacao');
